@@ -7,9 +7,9 @@
 - MainWindow (главное окно приложения);
 - AdminGroupsPage (управление группами).
 ##### Использованные XML-теги:
-- <summary>
-- <remarks>
-- <param>
-- <returns>
-- <exception>
-- <example>
+- summary
+- remarks
+- param
+- returns
+- exception
+- example

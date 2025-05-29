@@ -1,0 +1,38 @@
+﻿<Window x:Class="StudentGroup.TeacherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentGroup"
+        mc:Ignorable="d"
+        Title="Журнал" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="{StaticResource PrimaryBrush}" Padding="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="TeacherNameText" Grid.Column="0" Text="ФИО Преподавателя" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                <Button x:Name="LogoutButton" Grid.Column="1" Content="Выйти" Style="{StaticResource PrimaryButtonStyle}" Padding="10,5" MinWidth="80" VerticalAlignment="Center" Margin="4,0,4,0" Click="LogoutButton_Click"/>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Background="{StaticResource LightBackgroundBrush}">
+                <Button x:Name="ProfileButton" Content="Мой профиль" Style="{StaticResource PrimaryButtonStyle}" Margin="5" Click="ProfileButton_Click"/>
+                <Button x:Name="GradesButton" Content="Оценки" Style="{StaticResource PrimaryButtonStyle}" Margin="5" Click="GradesButton_Click"/>
+                <Button x:Name="SubjectsButton" Content="Мои предметы" Style="{StaticResource PrimaryButtonStyle}" Margin="5" Click="SubjectsButton_Click"/>
+            </StackPanel>
+            <Frame x:Name="ContentFrame" Grid.Column="1" Background="{StaticResource LightBackgroundBrush}"/>
+        </Grid>
+    </Grid>
+</Window>

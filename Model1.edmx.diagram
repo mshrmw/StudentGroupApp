@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b46cfcca30424128a5714498331c35c0" Name="Diagram1">
+        <EntityTypeShape EntityType="StudyGroupModel.Grades" Width="1.5" PointX="8.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyGroupModel.Groups" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyGroupModel.GroupSubjectTeacher" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyGroupModel.Role" Width="1.5" PointX="1.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyGroupModel.Students" Width="1.5" PointX="6" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyGroupModel.Subjects" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyGroupModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyGroupModel.Teachers" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudyGroupModel.Users" Width="1.5" PointX="1.5" PointY="11.625" IsExpanded="true" />
+        <AssociationConnector Association="StudyGroupModel.FK_Grades_GST" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyGroupModel.FK_Grades_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyGroupModel.FK_GST_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyGroupModel.FK_Students_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyGroupModel.FK_GST_Subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyGroupModel.FK_GST_Teachers" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyGroupModel.FK_Users_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyGroupModel.FK_Students_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="StudyGroupModel.FK_Teachers_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

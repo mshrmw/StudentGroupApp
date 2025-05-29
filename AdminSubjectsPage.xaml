@@ -1,0 +1,30 @@
+﻿<Page x:Class="StudentGroup.AdminSubjectsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:StudentGroup"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Управление предметами" Background="{StaticResource LightBackgroundBrush}">
+    
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBox x:Name="SubjectNameTextBox" Width="150" Margin="0,0,10,0" ToolTip="Введите название предмета" Style="{StaticResource PrimaryTextBoxStyle}" />
+            <TextBox x:Name="HoursTextBox" Width="150" Margin="0,0,10,0" ToolTip="Введите часы" Style="{StaticResource PrimaryTextBoxStyle}"/>
+            <Button x:Name="AddSubjectButton" Content="Добавить" Style="{StaticResource PrimaryButtonStyle}" Click="AddSubjectButton_Click"/>
+            <Button x:Name="DeleteSubjectButton" Content="Удалить" Margin="10,0,0,0" Style="{StaticResource PrimaryButtonStyle}" Click="DeleteSubjectButton_Click"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1" x:Name="SubjectsDataGrid" Style="{StaticResource DataGridStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding SubjectName}" Width="*"/>
+                <DataGridTextColumn Header="Часы" Binding="{Binding Hours}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

@@ -1,0 +1,28 @@
+﻿<Window x:Class="StudentGroup.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentGroup"
+        mc:Ignorable="d"
+        Style="{StaticResource WindowStyle}"
+        Title="Авторизация" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="{StaticResource PrimaryBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Auth" Content="Вход" Grid.Column="1" Style="{StaticResource PrimaryButtonStyle}" Click="Auth_Click"/>
+            <Button x:Name="RegForTeacher" Content="Регистрация для преподавателей" Grid.Column="0" Style="{StaticResource PrimaryButtonStyle}" Click="RegForTeacher_Click"/>
+            <Button x:Name="RegForStudents" Content="Регистрация для студентов" Grid.Column="2" Style="{StaticResource PrimaryButtonStyle}" Click="RegForStudents_Click"/>
+        </Grid>
+        <Frame x:Name="mainFrame" Grid.Row="1" Background="{StaticResource LightBackgroundBrush}"/>
+    </Grid>
+</Window>

@@ -17,24 +17,50 @@ using System.Windows.Shapes;
 namespace StudentGroup
 {
     /// <summary>
-    /// Логика взаимодействия для AdminGroupsPage.xaml
+    /// Страница администратора для управления группами студентов
     /// </summary>
+    /// <remarks>
+    /// Предоставляет функционал для просмотра, добавления и удаления учебных групп,
+    /// включая каскадное удаление связанных данных (студентов, оценок и связей с предметами)
+    /// </remarks>
     public partial class AdminGroupsPage : Page
     {
         private StudyGroupEntities _context = StudyGroupEntities.GetContext();
+        /// <summary>
+        /// Инициализирует новую страницу управления группами
+        /// </summary>
+        /// <remarks>
+        /// При создании автоматически загружает список всех групп из базы данных
+        /// </remarks>
         public AdminGroupsPage()
         {
             InitializeComponent();
             LoadGroups();
         }
+        /// <summary>
+        /// Загружает список групп из базы данных в DataGrid
+        /// </summary>
         private void LoadGroups()
         {
             GroupsDataGrid.ItemsSource = _context.Groups.ToList();
         }
+        /// <summary>
+        /// Проверяет, содержит ли текст только английские буквы, пробелы и дефисы
+        /// </summary>
+        /// <param name="text">Текст для проверки</param>
+        /// <returns>True если текст содержит только разрешенные символы, иначе False</returns>
         private bool IsEnglishText(string text)
         {
             return Regex.IsMatch(text, @"^[a-zA-Z\s-]+$");
         }
+        /// <summary>
+        /// Обрабатывает событие нажатия кнопки добавления новой группы
+        /// </summary>
+        /// <param name="sender">Объект, вызвавший событие</param>
+        /// <param name="e">Аргументы события</param>
+        /// <exception cref="System.Data.Entity.Infrastructure.DbUpdateException">
+        /// Может возникнуть при ошибках сохранения в базу данных
+        /// </exception>
         private void AddGroupButton_Click(object sender, RoutedEventArgs e)
         {
             String groupName = GroupNameTextBox.Text;
@@ -65,6 +91,21 @@ namespace StudentGroup
             GroupNameTextBox.Clear();
             GroupSpecializationTextBox.Clear();
         }
+        /// <summary>
+        /// Обрабатывает событие нажатия кнопки удаления группы
+        /// </summary>
+        /// <remarks>
+        /// Выполняет каскадное удаление всех связанных данных:
+        /// 1) оценок студентов группы;
+        /// 2) связей группы с предметами;
+        /// 3) самих студентов группы;
+        /// 4) группы.
+        /// </remarks>
+        /// <param name="sender">Объект, вызвавший событие</param>
+        /// <param name="e">Аргументы события</param>
+        /// <exception cref="System.Exception">
+        /// Может возникнуть при ошибках работы с базой данных
+        /// </exception>
         private void DeleteGroupButton_Click(object sender, RoutedEventArgs e)
         {
             if (GroupsDataGrid.SelectedItem == null)

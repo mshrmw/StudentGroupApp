@@ -18,17 +18,28 @@ using System.Windows.Shapes;
 namespace StudentGroup
 {
     /// <summary>
-    /// Логика взаимодействия для RegForStudents.xaml
+    /// Страница регистрации студентов в системе
     /// </summary>
+    /// // <remarks>
+    /// Предоставляет функционал для регистрации новых студентов с валидацией вводимых данных
+    /// </remarks>
     public partial class RegForStudents : Page
     {
         private MainWindow _mainWindow;
+        /// <summary>
+        /// Инициализирует новый экземпляр класса RegForStudents
+        /// </summary>
+        /// <param name="mainWindow">Главное окно приложения, используется для навигации </param>
         public RegForStudents(MainWindow mainWindow)
         {
             InitializeComponent();
             _mainWindow = mainWindow;
             LoadGroups();
         }
+        /// <summary>
+        /// Загружает список групп из базы данных в выпадающий список
+        /// </summary>
+        /// <exception cref="System.Exception">Может возникнуть при проблемах с подключением к БД </exception>
         private void LoadGroups()
         {
             try
@@ -45,6 +56,11 @@ namespace StudentGroup
                 MessageBox.Show($"Ошибка загрузки групп: {ex.Message}");
             }
         }
+        /// <summary>
+        /// Проверяет валидность email адреса
+        /// </summary>
+        /// <param name="email">Email адрес для проверки </param>
+        /// <returns>True если email валиден, иначе False </returns>
         private bool IsValidEmail(string email)
         {
             try
@@ -57,6 +73,11 @@ namespace StudentGroup
                 return false;
             }
         }
+        /// <summary>
+        /// Проверяет, содержит ли строка только русские буквы, пробелы и дефисы
+        /// </summary>
+        /// <param name="text">Текст для проверки </param>
+        /// <returns>True если текст содержит только разрешенные символы, иначе False </returns>
         private bool IsRussianText(string text)
         {
             foreach (char c in text)
@@ -68,6 +89,14 @@ namespace StudentGroup
             }
             return true;
         }
+        /// <summary>
+        /// Валидирует пароль по следующим критериям:
+        /// 1) содержит только английские буквы и цифры;
+        /// 2) содержит хотя бы одну букву;
+        /// 3) содержит хотя бы одну цифру.
+        /// </summary>
+        /// <param name="password">Пароль для валидации </param>
+        /// <returns>True если пароль соответствует требованиям, иначе False </returns>
         public static bool ValidatePassword(string password)
         {
             bool hasLetter = false;
@@ -112,12 +141,22 @@ namespace StudentGroup
             }
             return true;
         }
+        /// <summary>
+        /// Проверяет валидность номера телефона
+        /// </summary>
+        /// <param name="phone">Номер телефона для проверки</param>
+        /// <returns>True если номер содержит 11 цифр, иначе False</returns>
         private bool IsValidPhoneNumber(string phone)
         {
             string digitsOnly = new string(phone.Where(char.IsDigit).ToArray());
 
             return digitsOnly.Length == 11;
         }
+        /// <summary>
+        /// Генерирует SHA1 хэш строки
+        /// </summary>
+        /// <param name="password">Пароль для хэширования</param>
+        /// <returns>Хэш пароля в виде шестнадцатеричной строки</returns>
         public static string GetHash(string password)
         {
             using (var hash = SHA1.Create())
@@ -125,6 +164,12 @@ namespace StudentGroup
                 return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x => x.ToString("X2")));
             }
         }
+        /// <summary>
+        /// Обрабатывает событие нажатия кнопки регистрации
+        /// </summary>
+        /// <param name="sender">Объект, вызвавший событие </param>
+        /// <param name="e">Аргументы события</param>
+        /// <exception cref="System.Exception">Может возникнуть при проблемах с подключением к БД</exception>
         private void RegistrationButton_Click(object sender, RoutedEventArgs e)
         {
             String lastName = LastName.Text;
